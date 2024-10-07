@@ -11,7 +11,6 @@ class ViewController: UIViewController {
     
     private let helper = Helper()
     private let textLable = UILabel()
-    private let imageView = UIImageView()
     private let imageContainerView = UIView()
     private let imageCV = UIImageView()
     //private lazy let textLable: UILabel = setupLableTwo() (третий способ)
@@ -31,16 +30,14 @@ class ViewController: UIViewController {
         view.backgroundColor = .green
         updateNumbers()
         setupLable()
-        setupImageView()
         
         view.addSubview(textLable)
-        view.addSubview(imageView)
         view.addSubview(imageContainerView)
-        view.addSubview(imageCV)
+        imageContainerView.addSubview(imageCV)
         
         setupView()
-        setupImageCV()
         setupImageContainerView()
+        setupImageCV() 
     }
     
     private func updateNumbers() {
@@ -71,16 +68,7 @@ class ViewController: UIViewController {
      }
      */
     
-    private func setupImageView() {
-        imageView.image = UIImage(named: "cat")
-        imageView.frame = .init(x: 30, y: 130, width: 100, height: 200)
-        imageView.layer.cornerRadius = 10
-        imageView.clipsToBounds = true
-        imageView.layer.shadowColor = UIColor.black.cgColor
-        imageView.layer.shadowOffset = CGSize(width: 15, height: 15)
-        imageView.layer.opacity = 1
-        imageView.layer.shadowRadius = 10
-    }
+
     
     private func setupView() {
         let gradien = CAGradientLayer()
@@ -91,7 +79,6 @@ class ViewController: UIViewController {
         
         //Добовляем подсклой к кнопке
         view.layer.insertSublayer(gradien, at: 0)
-        
     }
     
     private func setupImageContainerView() {
@@ -101,12 +88,10 @@ class ViewController: UIViewController {
         imageContainerView.layer.shadowOffset = CGSize(width: 20, height: 20)
         imageContainerView.layer.shadowOpacity = 0.7
         imageContainerView.layer.cornerRadius = 10
-        //imageContainerView.clipsToBounds = true
-        
     }
     
     private func setupImageCV() {
-        imageCV.frame = CGRect(x: 30, y: 130, width: 100, height: 200)
+        imageCV.frame = imageContainerView.bounds
         imageCV.image = UIImage(named: "dog")
         imageCV.tintColor = .black
         imageCV.layer.cornerRadius = 10
