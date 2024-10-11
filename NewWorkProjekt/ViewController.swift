@@ -28,6 +28,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .green
+        
         updateNumbers()
         setupLable()
         
@@ -37,7 +38,9 @@ class ViewController: UIViewController {
         
         setupView()
         setupImageContainerView()
-        setupImageCV() 
+        setupImageCV()
+        setupLayout()
+        
     }
     
     private func updateNumbers() {
@@ -55,7 +58,6 @@ class ViewController: UIViewController {
         textLable.backgroundColor = .yellow
         textLable.textColor = .red
         textLable.layer.cornerRadius = 10
-        textLable.frame = .init(x: 30, y: 30, width: 100, height: 50)
         textLable.clipsToBounds = true
     }
     // Третий способ (вызываем прямо из экземпляра класса)
@@ -68,7 +70,7 @@ class ViewController: UIViewController {
      }
      */
     
-
+    
     
     private func setupView() {
         let gradien = CAGradientLayer()
@@ -82,7 +84,6 @@ class ViewController: UIViewController {
     }
     
     private func setupImageContainerView() {
-        imageContainerView.frame = CGRect(x: 30, y: 130, width: 100, height: 200)
         imageContainerView.backgroundColor = .brown
         imageContainerView.layer.shadowColor = UIColor.black.cgColor
         imageContainerView.layer.shadowOffset = CGSize(width: 20, height: 20)
@@ -91,11 +92,50 @@ class ViewController: UIViewController {
     }
     
     private func setupImageCV() {
-        imageCV.frame = imageContainerView.bounds
         imageCV.image = UIImage(named: "dog")
         imageCV.tintColor = .black
         imageCV.layer.cornerRadius = 10
         imageCV.clipsToBounds = true
     }
+    
+    private func setupLayout() {
+        imageCV.contentMode = .scaleToFill
+        textLable.translatesAutoresizingMaskIntoConstraints = false
+        imageContainerView.translatesAutoresizingMaskIntoConstraints = false
+        imageCV.translatesAutoresizingMaskIntoConstraints = false
+        
+        //        Способ установки констрейнтов
+        //        let leftConstreint = NSLayoutConstraint(item: textLable,
+        //                                                attribute: .top,
+        //                                                relatedBy: .equal,
+        //                                                toItem: view,
+        //                                                attribute: .top,
+        //                                                multiplier: 1.0,
+        //                                                constant: 100
+        //        )
+        //
+        //        let centerConstrein = NSLayoutConstraint(item: textLable,
+        //                                                 attribute: .centerX,
+        //                                                 relatedBy: .equal,
+        //                                                 toItem: view,
+        //                                                 attribute: .centerX,
+        //                                                 multiplier: 1.0,
+        //                                                 constant: 0
+        //        )
+        
+        NSLayoutConstraint.activate([textLable.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
+                                     textLable.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                                     imageContainerView.topAnchor.constraint(equalTo: textLable.bottomAnchor, constant: 150),
+                                     imageContainerView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                                     imageContainerView.heightAnchor.constraint(equalToConstant: 200),
+                                     imageContainerView.widthAnchor.constraint(equalToConstant: 200),
+                                     imageCV.topAnchor.constraint(equalTo: imageContainerView.topAnchor),
+                                     imageCV.bottomAnchor.constraint(equalTo: imageContainerView.bottomAnchor),
+                                     imageCV.leadingAnchor.constraint(equalTo: imageContainerView.leadingAnchor),
+                                     imageCV.trailingAnchor.constraint(equalTo: imageContainerView.trailingAnchor),
+                                    ])
+    }
 }
+
+
 
