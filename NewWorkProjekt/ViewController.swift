@@ -96,10 +96,11 @@ class ViewController: UIViewController {
         imageCV.tintColor = .black
         imageCV.layer.cornerRadius = 10
         imageCV.clipsToBounds = true
+        imageCV.contentMode = .scaleToFill
     }
     
     private func setupLayout() {
-        imageCV.contentMode = .scaleToFill
+      
         textLable.translatesAutoresizingMaskIntoConstraints = false
         imageContainerView.translatesAutoresizingMaskIntoConstraints = false
         imageCV.translatesAutoresizingMaskIntoConstraints = false
@@ -123,17 +124,20 @@ class ViewController: UIViewController {
         //                                                 constant: 0
         //        )
         
-        NSLayoutConstraint.activate([textLable.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
-                                     textLable.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-                                     imageContainerView.topAnchor.constraint(equalTo: textLable.bottomAnchor, constant: 150),
-                                     imageContainerView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-                                     imageContainerView.heightAnchor.constraint(equalToConstant: 200),
-                                     imageContainerView.widthAnchor.constraint(equalToConstant: 200),
-                                     imageCV.topAnchor.constraint(equalTo: imageContainerView.topAnchor),
-                                     imageCV.bottomAnchor.constraint(equalTo: imageContainerView.bottomAnchor),
-                                     imageCV.leadingAnchor.constraint(equalTo: imageContainerView.leadingAnchor),
-                                     imageCV.trailingAnchor.constraint(equalTo: imageContainerView.trailingAnchor),
-                                    ])
+        NSLayoutConstraint.activate([
+            textLable.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
+            textLable.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            
+            imageContainerView.topAnchor.constraint(equalTo: textLable.bottomAnchor, constant: 150),
+            imageContainerView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            imageContainerView.heightAnchor.constraint(equalToConstant: 200),
+            imageContainerView.widthAnchor.constraint(equalToConstant: 200),
+            
+            imageCV.topAnchor.constraint(equalTo: imageContainerView.topAnchor),
+            imageCV.bottomAnchor.constraint(equalTo: imageContainerView.bottomAnchor),
+            imageCV.leadingAnchor.constraint(equalTo: imageContainerView.leadingAnchor),
+            imageCV.trailingAnchor.constraint(equalTo: imageContainerView.trailingAnchor),
+        ])
     }
 }
 
